@@ -49,7 +49,7 @@ function renderQuestions() {
 
       const choiceElement = document.createElement("input");
       choiceElement.type = "radio";
-      choiceElement.name = question-${i};
+      choiceElement.name = `question-${i}`;
       choiceElement.value = choice;
 
       if (userAnswers[i] === choice) {
