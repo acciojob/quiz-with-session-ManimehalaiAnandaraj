@@ -1,4 +1,9 @@
 //your JS code here.
+document.addEventListener('DOMContentLoaded',()=>{
+	
+const quizForm=document.getElementById('questions')	;
+	const submitButton=document.getElementById('submit');
+	const resultDiv==document.getElementById('score');
 
 // Do not change code below this line
 // This code will just display the questions to the screen
@@ -54,3 +59,45 @@ function renderQuestions() {
   }
 }
 renderQuestions();
+
+	  function loadProgress() {
+        let progress = JSON.parse(sessionStorage.getItem('progress') || '{}');
+        for (const questionId in progress) {
+            const selectedAnswer = progress[questionId];
+            const radio = document.querySelector(`input[name="${questionId}"][value="${selectedAnswer}"]`);
+            if (radio) {
+                radio.checked = true;
+            }
+        }
+    }
+
+    function saveProgress() {
+        let progress = {};
+        questions.forEach((question, index) => {
+            const selectedAnswer = document.querySelector(`input[name="question-${index}"]:checked`);
+            if (selectedAnswer) {
+                progress[`question-${index}`] = selectedAnswer.value;
+            }
+        });
+        sessionStorage.setItem('progress', JSON.stringify(progress));
+    }
+
+    displayQuestions();
+    loadProgress();
+
+    quizForm.addEventListener('change', saveProgress);
+
+    submitButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        let score = 0;
+        questions.forEach((question, index) => {
+            const selectedAnswer = document.querySelector(`input[name="question-${index}"]:checked`);
+            if (selectedAnswer && selectedAnswer.value === question.correctAnswer) {
+                score++;
+            }
+        });
+        resultDiv.textContent = `Your score is ${score} out of ${questions.length}.`;
+        localStorage.setItem('score', score);
+        sessionStorage.removeItem('progress');
+    });
+});
