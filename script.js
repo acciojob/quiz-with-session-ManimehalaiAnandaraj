@@ -8,7 +8,7 @@
   {
     question: "What is the highest mountain in the world?",
     choices: ["Everest", "Kilimanjaro", "Denali", "Matterhorn"],
-    answer: "Everest",
+    answer: "Everest",https://www.svgrepo.com/show/345223/three-dots-vertical.svg
   },
   {
     question: "What is the largest country by area?",
