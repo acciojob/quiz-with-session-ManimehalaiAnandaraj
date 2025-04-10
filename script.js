@@ -1,9 +1,3 @@
-document.addEventListener('DOMContentLoaded', () => {
-	const questionsElement = document.getElementById("questions");
-const submitButton = document.getElementById("submit");
-const scoreElement = document.getElementById("score");
-
-let userAnswers = JSON.parse(sessionStorage.getItem("progress")) || new Array(questions.length).fill(null);
 
    const questions = [
   {
@@ -33,6 +27,11 @@ let userAnswers = JSON.parse(sessionStorage.getItem("progress")) || new Array(qu
   },
 ];
 
+const questionsElement = document.getElementById("questions");
+const submitButton = document.getElementById("submit");
+const scoreElement = document.getElementById("score");
+
+let userAnswers = JSON.parse(sessionStorage.getItem("progress")) || new Array(questions.length).fill(null);
 
 
 function renderQuestions() {
@@ -84,5 +83,4 @@ submitButton.addEventListener("click", () => {
 
   scoreElement.textContent = Your score is ${score} out of ${questions.length}.;
   localStorage.setItem("score", score.toString());
-});
 });
