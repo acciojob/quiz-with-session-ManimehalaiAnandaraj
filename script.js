@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
+	const questionsElement = document.getElementById("questions");
+const submitButton = document.getElementById("submit");
+const scoreElement = document.getElementById("score");
+
+let userAnswers = JSON.parse(sessionStorage.getItem("progress")) || new Array(questions.length).fill(null);
+
    const questions = [
   {
     question: "What is the capital of France?",
@@ -27,11 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
   },
 ];
 
-const questionsElement = document.getElementById("questions");
-const submitButton = document.getElementById("submit");
-const scoreElement = document.getElementById("score");
-
-let userAnswers = JSON.parse(sessionStorage.getItem("progress")) || new Array(questions.length).fill(null);
 
 
 function renderQuestions() {
